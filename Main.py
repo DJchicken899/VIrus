@@ -1,4 +1,4 @@
-import pyttsx3 as tts
+import pytts3 as tts
 import time
 import ctypes
 import win32gui
